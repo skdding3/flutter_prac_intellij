@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart'
+import 'package:riverpod_annotation/riverpod_annotation.dart'
+
+
+final helloWorldProvider = Provider((_) => 'Hello World')
+
 
 void main() {
-  runApp(const MyApp());
+  runApp(ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -9,7 +15,9 @@ class MyApp extends StatelessWidget {
 
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context WidgetRef ref) {
+    final String value = ref.watch(helloWorldProvider);
+
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
